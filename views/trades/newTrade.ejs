@@ -1,0 +1,52 @@
+<%- include('../partials/header.ejs')%>
+<div class = "body">
+      <form action = '/trades' method = 'POST'>
+        <table id="newtable">
+            <h3>Submit below details to create new trade</h3> <br>
+            <tr>
+                <td><label for="category">Select from available categories</label></td>
+                <td><select name="category" id="category">
+                    <option value="Fruits">Fruits</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Seeds and Plant Nutrients">Seeds and Plant Nutrients</option>
+                    <option value="Gardening Tools">Gardening Tools</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="title">Name of the product</label> </td>
+                <td> <input type="text" id="title" name="title"></td>
+            </tr>
+            <tr>
+                <td><label for="pickupby">Pick up the product by</label></td>
+                <td><input type="text" id="pickupby" name="pickupby"></td>
+            </tr>
+            <tr>
+                <td><label for="expiry">Use the product by(expiry)
+                    <br>For tools please mention the state/condition of the tool</label></td>
+                <td><input type="text" id="expiry" name="expiry"></td>
+            </tr>
+            <tr>
+                <td><label for="pincode">Pickup location(pincode)</label> </td>
+                <td> <input type="text" id="pincode" name="pincode"></td>
+            </tr>
+            <tr>
+                <td><label for="quantity">Quantity</label> &nbsp; &nbsp;</td>
+                <td><input type="text" id="quantity" name="quantity"></td>
+            </tr> 
+            <tr> 
+                <td><label for= "image">Image URL</label> </td>   
+                <td><input type = "url" id= "image" name = "image"></td> 
+            </tr>
+            <tr> 
+                <td><label id="description" for="description">Description or any other information you wish to provide:</label></td>
+                <td><textarea rows="3" cols="40" name="description"></textarea></td>
+            </tr>
+        </table>
+        <input class="button" id = "newbutton" type="submit" value="Submit"/> <br> 
+    </form>
+
+    </div>
+<%- include('../partials/footer.ejs')%>
+
+
+   

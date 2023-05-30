@@ -1,0 +1,54 @@
+<%- include('../partials/header.ejs')%>
+    <div class = "body">
+        <h3><%=item.title %></h3>
+        <table>
+            <tr>
+                <td><b>Category:</b> <%=item.category%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Pickupby:</b> <%=item.pickupby%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Expiry:</b> <%=item.expiry%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Pincode:</b> <%=item.pincode%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Quantity:</b> <%=item.quantity%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Description:</b> <%=item.description%> <br></td>
+            </tr>
+            <tr>
+                <td><b>Status:</b> <%=item.status%> <br></td>
+            </tr>
+            <tr>
+                <td><img alt="No image available" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'" src="<%=item.image%>" height="200" width="200"> <br></td>
+            </tr>
+        </table>
+        <% if(user == item.author._id) { %>
+        <form>
+            <button type="submit" formmethod="GET" formaction="/trades/<%= item.id%>/editTrade">Edit</button>
+            <button type="submit" formmethod="POST" formaction="/trades/<%= item.id%>?_method=DELETE">Delete</button>
+        </form>
+        <%} else {%>
+            <%if(item.Saved===false){%>
+                <form action="/trades/<%= item.id%>/save" method="post">
+                  <label for="Name"></label>
+                  <input type="hidden" id="title" name="Name" value="<%= item.title%>"required/>
+                  <button type="submit" id="save">Watch</button>
+                </form>
+              <%}else{%>
+                <form action="/trades/<%= item._id%>/savedelete?_method=delete" method="post">
+                <button type="submit"> UnWatch </button>
+              </form>
+              <%}%>
+              <%}%>
+            <%if(!(user== item.author._id)&&item.status=="Available"){%>
+                <form action="/trades/<%= item.id%>/trade" method="get">
+                  <button type="submit" class="trade-buttons">Trade</button>
+                </form>
+                <%}%>
+    </div>
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title></title>
+        <link rel="stylesheet" href="/css/tradestyle.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"> <img class = "logo" src="/images/main_logo.png" height="65" width="60"></a>
+        </div>
+        <br><br>
+        <p id="rightnav">
+            <% if(!user) { %>
+              <a href='/users/signup'><b>Sign Up</b></a> &nbsp;
+              <a href='/users/login'><b>Login</b></a>&nbsp;
+          <% } else { %>
+              <a href="/trades/newTrade"><b>Start Trading</b></a> &nbsp;
+              <a href='/users/profile'><b>Profile</b></a> &nbsp;
+              <a href='/users/logout'><b>Logout</b></a> &nbsp;
+          <%}%>
+        </p>
+        <br><br>
+        <hr>
+        <p id="bottomnav">
+            <a href="/trades"><b>Trades</b></a>
+        </p>
+    <div class = "flashMessage">
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+          <div id = "error">
+            <%=message%>
+          </div>
+        <%});%>
+      <%}%>
+      
+      <% if(successMessages.length > 0) {%>
+        <% successMessages.forEach(message=>{%>
+          <div id = "success">
+            <%=message%>
+          </div>
+        <%});%>
+      <%}%>
+    </div>
+    </header>

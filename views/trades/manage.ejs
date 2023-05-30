@@ -1,0 +1,19 @@
+<%-include('../partials/header.ejs')%>
+    <div class = "body">
+          <h2 >Trade Manage</h2>
+          <table>
+            <tr>
+              <th>Your Offers requests</th>
+              <th>Your Trade item requested</th>
+            </tr>
+            <tr>
+              <td> <a href="/trades/<%= item.id%>"> <%= item.title%></a> </td>
+              <td> <a href="/"> <%= item.offerItem%></td> </a>
+            </tr>
+          </table>
+          <form>
+            <button type="submit" formmethod="GET" formaction="/trades/<%= item.id%>/accept">Accept</button>
+            <button type="submit" formmethod="GET" formaction="/trades/<%= item.id%>/reject">Reject</button>
+          </form>
+    </div>
+<%-include('../partials/footer.ejs')%>

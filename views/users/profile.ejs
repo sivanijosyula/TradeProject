@@ -1,0 +1,116 @@
+<%- include('../partials/header.ejs')%>
+<div class = "body">
+    <h2 id="user"> Welcome, <%=user.firstName%></h2>
+    <% if(trades.length) { %>
+        <p> You have created the following trades</p>
+        <table class="profile_table">
+            <tr>
+                <th class="profile_table">Title</th>
+                <th class="profile_table">Category</th>
+                <th class="profile_table">Status</th>
+                <th class="profile_table">Trade item Actions</th>
+                <th class="profile_table">Trade Actions</th>
+            </tr> 
+            <%trades.forEach(item => { %>
+            <tr>
+                <td class="profile_table">
+                    <a href = '/trades/<%= item.id%>'><p><%= item.title%> </p></a>
+                </td class="profile_table">
+                <td class="profile_table">
+                    <%= item.category%> </p>
+                </td>
+                <td class="profile_table"> 
+                    <%= item.status%> </p>
+                </td>
+                <td class="profile_table"> <br>
+                    <form>
+                        <button type="submit" formmethod="GET" formaction="/trades/<%= item.id%>/editTrade">Edit</button>
+                        &nbsp;
+                        <button type="submit" formmethod="POST" formaction="/trades/<%= item.id%>?_method=DELETE">Delete</button>
+                    </form>
+                </td>
+                <td class="profile_table"> <br>
+                    <%if(item.status==="Offer Pending"){%>
+                        <form action="/trades/<%= item.id%>/manage" method="get">
+                          <button type="submit">Manage</button>
+                        </form>
+                      <%}%>
+                </td>
+            </tr>
+            <%})%>
+        </table>
+    <%} else {%>
+        <p> You have not created any trades</p>
+        <form  action="/trades/newTrade">
+            <input class ="button" type="submit" value="Start Trading" />
+        </form> <br> <br>
+        <%}%>
+    <p><b>Your Watchlist:</b></p>
+    <%if(saves.length){%> 
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <%let names = new Array();%> 
+      <%saves.forEach(save=>{%>
+      <%names.push(save.title);%> <%});%>  <%saved.forEach(item=>{%>
+        <%if(names.includes(item.title)){%>
+      <td>
+        <a href="/trades/<%= item.id%>"><p><%= item.title%></p></a>
+      </td>
+      <td><p><%= item.category%></p></td>
+      <td><p><%= item.status%></p></td>
+      <td>
+        <form
+          action="/trades/<%= item.id%>/savedelete?_method=delete"
+          method="post">
+          <button type="submit" class="function-buttons">UnWatch</button>
+        </form>
+      </td>
+    </tr>
+  <%}%> 
+  <%})%> 
+</table>
+  <%}else{%>
+  <p>No trades added to Watchlist.</p>
+  <%};%>
+
+  <%if(offers.length){%> 
+  <p><b>Your Offers:</b></p>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <%let names = new Array();%>
+  <%offers.forEach(offer=>{%> <%names.push(offer.title);%> <%});%>
+  <%offered.forEach(item=>{%> <%if(names.includes(item.title)){%>
+      <td>
+        <a href="/trades/<%= item.id%>"><p><%= item.title%></p></a>
+      </td>
+      <td><p><%= item.category%></p></td>
+      <td><p><%= item.status%></p></td>
+      <td>
+        <form
+          action="/trades/<%= item.id%>/deleteoffer?_method=delete"
+          method="post">
+          <button type="submit">Cancel Offer</button>
+        </form>
+      </td>
+    </tr>
+  <%}%> 
+  <%})%> 
+</table>
+  <%};%>
+
+    </div>
+</div>
+</div>
+<%- include('../partials/footer.ejs')%>

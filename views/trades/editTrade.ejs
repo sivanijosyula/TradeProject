@@ -1,0 +1,39 @@
+<%-include('../partials/header.ejs')%>
+<div class = "body">
+  <form method="post" action="/trades/<%=item.id%>?_method=PUT">
+   <table>
+      <tr>
+         <td><label for= "title"> Title </label></td>
+         <td><input type = "text" id= "title" name = "title" value = "<%= item.title%>" required></td> 
+      </tr>
+      <tr>
+         <td><label for= "category"> Category </label></td>
+         <td><select name="category" id="category" value = "<%= item.category%>" required>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Seeds and Plant Nutrients">Seeds and Plant Nutrients</option>
+            <option value="Gardening Tools">Gardening Tools</option>
+        </select></td>
+      </tr>
+      <tr>
+         <td><label for= "pincode"> Pincode </label></td>
+         <td><input type = "text" id= "pincode" name = "pincode" value = "<%= item.pincode%>" required minlength="5" maxlength="5"></td>
+      </tr>
+      <tr>
+         <td><label for= "quantity"> Quantity </label></td>
+         <td><input type = "text" id= "quantity" name = "quantity" value = "<%= item.quantity%>" required></td>
+      </tr>
+      <tr>
+         <td><label for= "description"> Description </label></td>
+         <td><textarea id= "description" name = "description" rows="3" cols="40" required minlength="10">  <%= item.description%></textarea></td>
+      </tr>
+      <tr>
+         <td><label for= "image"> Image URL </label></td>
+         <td><input type = "url" id= "image" name = "image" value = "<%= item.image%>"></td>
+      </tr>
+   </table>
+       <button class= "buttons" type = "Submit">Update</button>
+  </form>
+</div>
+
+<%-include('../partials/footer.ejs')%>
