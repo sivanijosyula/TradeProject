@@ -10,7 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 
-// create application
+
 const app = express();
 
 //configure application
